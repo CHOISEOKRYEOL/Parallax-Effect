@@ -480,9 +480,6 @@
                 $(".paraNav ul li").eq(8).addClass("active").siblings().removeClass("active");
             }
             
-            
-            
-            
             // info
             $(".paraScroll span").text(parseInt(scrollTop)); //브라우저의 스크롤 값을 텍스트로 표시 , parseInt : 문자열을 정수로 변경
             
@@ -496,6 +493,14 @@
             $(".offset8").text(parseInt($("#section8").offset().top) + "px");
             $(".offset9").text(parseInt($("#section9").offset().top) + "px");
 
+
+            // for문
+            // for(let i = 1; i <= 9; i++) {
+            //     $(".offset"+i).text(parseInt($("#section"+i).offset().top) + "px");
+            // }
+
+
+            
         });
     </script>
 </body>
