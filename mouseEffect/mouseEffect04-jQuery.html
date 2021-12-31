@@ -41,7 +41,7 @@
         .bg {
             position: relative;
             height: 100vh;
-            background-image: url(../assets/img/bg16@2.jpg);
+            background-image: url(../assets/img/bg10@2.jpg);
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
@@ -53,7 +53,7 @@
             top: 0;
             width: 100%;
             height: 100vh;
-            background-color: rgba(5, 36, 70, 0.8);
+            background-color: rgba(52, 5, 70, 0.9);
             z-index: -1;
         }
     
@@ -150,22 +150,23 @@
             border-bottom: 0.2vw dashed orange;
             color: orange
         }
+
         .cursor {
             position: absolute;
             width: 200px;
             height: 200px;
             border-radius: 50%;
-            background: url(../assets/img/bg16@2.jpg) center center;
+            border: 5px solid #fff;
+            background-image: url(../assets/img/bg10@2.jpg);
+            /* 마우스에 사진이 보이는 효과 */
             background-attachment: fixed;
             background-size: cover;
-            border: 5px solid #fff;
-            overflow: hidden;
+            background-position: center center;
+            background-repeat: no-repeat;
+            /* 글씨 까지 보이게 해준다 */
             z-index: -1;
         }
-        .info.left li.active {
-            text-decoration: underline;
-            color: orange;
-        }
+        
     </style>
 </head>
 <body class="mouse bg">
@@ -183,8 +184,8 @@
 
     <!-- info -->
     <div class="info">
-        <h1><a href="mouseIndex.html">Mouse Effect04 - Javascript</a></h1>
-        <p>마우스 이펙트 - 조명 효과</p>
+        <h1><a href="mouseIndex.html">Mouse Effect04 - jQuery</a></h1>
+        <p>마우스 이펙트 - 조명효과</p>
     </div>
 
     <div class="info right">
@@ -192,7 +193,7 @@
             <li><a href="mouseEffect01-javascript.html">1</a></li>
             <li><a href="mouseEffect02-javascript.html">2</a></li>
             <li><a href="mouseEffect03-javascript.html">3</a></li>
-            <li class="active"><a href="mouseEffect04-javascript.html">4</a></li>
+            <li><a href="mouseEffect04-javascript.html">4</a></li>
             <li><a href="mouseEffect05-javascript.html">5</a></li>
             <li><a href="mouseEffect06-javascript.html">6</a></li>
             <li><a href="mouseEffect07-javascript.html">7</a></li>
@@ -202,7 +203,7 @@
             <li><a href="mouseEffect01-jquery.html">1</a></li>
             <li><a href="mouseEffect02-jquery.html">2</a></li>
             <li><a href="mouseEffect03-jquery.html">3</a></li>
-            <li><a href="mouseEffect04-jquery.html">4</a></li>
+            <li class="active"><a href="mouseEffect04-jquery.html">4</a></li>
             <li><a href="mouseEffect05-jquery.html">5</a></li>
             <li><a href="mouseEffect06-jquery.html">6</a></li>
             <li><a href="mouseEffect07-jquery.html">7</a></li>
@@ -219,25 +220,20 @@
     <!-- //info -->
 
     <!-- script -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
     <script>
-        const cursor = document.querySelector(".cursor");
-        // padding이 포함된 값
-        // const Owidth = cursor.offsetWidth;
-        // const height = cursor.offsetHeight;
-        // padding이 포함되지 않은 값
-        // const Cwidth = cursor.clientWidth;
-        // const height = cursor.clientHeight;
 
-        const circle = cursor.getBoundingClientRect();
+        const width = $(".cursor").width() / 2;
+        const heigth = $(".cursor").height() / 2;
 
-        function follow(e) {
-            gsap.to(cursor, {duration:0.3, left: e.pageX - circle.width/2, top: e.pageY -  circle.height/2});
-            document.querySelector(".pageX").innerText = e.pageX + "px";
-            document.querySelector(".pageY").innerText = e.pageY + "px";
-        }
+        $(window).mousemove(function(e) {
+            gsap.to(".cursor", {duration: 0.5, left: e.pageX - width, top: e.pageY - heigth})
+            $(".pageX").text(e.pageX + "px");
+            $(".pageY").text(e.pageY + "px");
+        });
 
-        window.addEventListener("mousemove", follow);
+
     </script>
 </body>
 </html>
